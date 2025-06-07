@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Boolean, Integer, ForeignKey, Enum as SqlEnum
 from sqlalchemy.orm import relationship
-from database import Base
+from apps.db.database import Base
 import enum
 
 
@@ -9,7 +9,7 @@ class UserRoles(str, enum.Enum):
     ADMIN = 'admin'
     SIMPLE = 'simple'
     BOOKSHOP = 'bookshop'
-    LIBRARY = 'library'
+    PREMIUM = 'premium'
 
 
 class Languages(str, enum.Enum):
@@ -44,7 +44,6 @@ class User(Base):
     location = relationship("Location", back_populates="users")
 
     otp = relationship("Otp", back_populates="user", uselist=False)
-
 
 
 class Otp(Base):
